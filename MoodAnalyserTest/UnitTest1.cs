@@ -8,8 +8,8 @@ namespace MoodAnalyseTest
         public void AnalyseMood_ShouldReturnSad()
         {
             string message = "I am in Sad Mood";
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            string check = moodAnalyser.AnalyseMood(message);
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            string check = moodAnalyser.AnalyseMood();
             Assert.AreEqual(check, "Sad");
         }
 
@@ -17,8 +17,8 @@ namespace MoodAnalyseTest
         public void AnalyseMood_ShouldReturnHappy()
         {
             string message = "I am in Any Mood";
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            string check = moodAnalyser.AnalyseMood(message);
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            string check = moodAnalyser.AnalyseMood();
             Assert.AreEqual(check, "Happy");
         }
     }
