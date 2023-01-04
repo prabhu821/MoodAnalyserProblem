@@ -90,6 +90,41 @@ namespace MoodAnalyseTest
             }
         }
 
-        
+        //TC 5.1,5.2,5.3
+        [Test]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject_UsingParameterisedConstructor()
+        {
+            object check = new MoodAnalyser("HAPPY");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+            check.Equals(obj);
+        }
+
+        [Test]
+        public void GivenImproperClassName_ShouldThrowMoodAnalyserCustomException_UsingParameterisedConstructor()
+        {
+            string check = "Class Not Found";
+            try
+            {
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(check, e.Message);
+            }
+        }
+
+        [Test]
+        public void GivenImproperConstructorName_ShouldThrowMoodAnalyserCustomException_UsingParameterisedConstructor()
+        {
+            string check = "Constructor Not Found";
+            try
+            {
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(check, e.Message);
+            }
+        }
     }
 }
