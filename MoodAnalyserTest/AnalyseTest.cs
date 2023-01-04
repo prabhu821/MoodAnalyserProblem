@@ -31,7 +31,7 @@ namespace MoodAnalyseTest
                 MoodAnalyser moodAnalyser = new MoodAnalyser(message);
                 string check = moodAnalyser.AnalyseMood();
             }
-            catch(MoodAnalyserCustomException e)
+            catch (MoodAnalyserCustomException e)
             {
                 Assert.AreEqual("Mood should not be null", e.Message);
             }
@@ -46,10 +46,50 @@ namespace MoodAnalyseTest
                 MoodAnalyser moodAnalyser = new MoodAnalyser(message);
                 string check = moodAnalyser.AnalyseMood();
             }
-            catch(MoodAnalyserCustomException e)
+            catch (MoodAnalyserCustomException e)
             {
                 Assert.AreEqual("Mood should not be empty", e.Message);
             }
         }
+
+        //TC 4.1,4.2,4.3
+        [Test]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
+        {
+            string message = null;
+            object check = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+            check.Equals(obj);
+        }
+
+        [Test]
+        public void GivenImproperClassName_ShouldThrowMoodAnalyserCustomException()
+        {
+            string check = "Class Not Found";
+            try
+            {
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(check, e.Message);
+            }
+        }
+
+        [Test]
+        public void GivenImproperConstructor_ShouldThrowMoodAnalyserCustomException()
+        {
+            string check = "Constructor Not Found";
+            try
+            {
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(check, e.Message);
+            }
+        }
+
+        
     }
 }

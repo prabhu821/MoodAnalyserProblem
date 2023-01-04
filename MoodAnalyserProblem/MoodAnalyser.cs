@@ -2,6 +2,8 @@
 {
     public class MoodAnalyser
     {
+        public MoodAnalyser() { }
+
         string message;
         public MoodAnalyser(string message)
         {
